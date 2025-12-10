@@ -1,545 +1,365 @@
-/* Основний стиль */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Nunito', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #333;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-/* Заголовок */
-.header {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
-    padding: 25px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo i {
-    font-size: 32px;
-}
-
-.logo h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-}
-
-.header-info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.currency-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 15px;
-    border-radius: 50px;
-}
-
-.btn-help {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn-help:hover {
-    background: white;
-    color: #6a11cb;
-}
-
-/* Основний контент */
-.main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    padding: 30px;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* Картки */
-.card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    border: 1px solid #e1e5eb;
-}
-
-.card-header {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    padding: 20px 25px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.card-header i {
-    font-size: 20px;
-}
-
-.card-header h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    flex-grow: 1;
-}
-
-.card-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.card-body {
-    padding: 25px;
-}
-
-/* Форми */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #555;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e1e5eb;
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-    transition: all 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #6a11cb;
-    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 15px;
-    align-items: end;
-}
-
-/* Кнопки */
-.btn-primary,
-.btn-success,
-.btn-warning,
-.btn-secondary {
-    padding: 14px 24px;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s;
-    width: 100%;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-success {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    color: white;
-    white-space: nowrap;
-}
-
-.btn-warning {
-    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-    color: #333;
-}
-
-.btn-secondary {
-    background: #f8f9fa;
-    color: #495057;
-    border: 2px solid #dee2e6;
-}
-
-.btn-icon {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: all 0.3s;
-}
-
-.btn-icon:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Таблиці */
-.table-container {
-    overflow-x: auto;
-    margin: 20px 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead {
-    background: #f8f9fa;
-}
-
-th {
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    color: #495057;
-    border-bottom: 2px solid #dee2e6;
-}
-
-td {
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-
-tbody tr:hover {
-    background: #f8f9fa;
-}
-
-/* Статистика */
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e9ecef;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #495057;
-}
-
-.stat-item i {
-    color: #6a11cb;
-}
-
-/* Інформація про інгредієнт */
-.ingredient-info {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Результати */
-.results-card .card-header {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.result-item {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.result-item.total-cost {
-    grid-column: span 2;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.result-label {
-    font-size: 14px;
-    color: #6c757d;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.total-cost .result-label {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.result-value {
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.total-cost .result-value {
-    font-size: 32px;
-}
-
-.recipe-summary {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.recipe-summary h3 {
-    margin-bottom: 15px;
-    color: #495057;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Фільтри */
-.filter-controls {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.filter-controls input,
-.filter-controls select {
-    flex: 1;
-    padding: 10px 15px;
-    border: 2px solid #e1e5eb;
-    border-radius: 8px;
-}
-
-/* Дії в таблиці */
-.actions-cell {
-    display: flex;
-    gap: 10px;
-}
-
-.action-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
-    transition: all 0.3s;
-}
-
-.action-btn.edit:hover {
-    color: #28a745;
-    background: rgba(40, 167, 69, 0.1);
-}
-
-.action-btn.delete:hover {
-    color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
-}
-
-/* Нижній колонтитул */
-.footer {
-    background: #f8f9fa;
-    padding: 20px 40px;
-    border-top: 1px solid #e9ecef;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-left {
-    color: #6c757d;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.footer-right {
-    display: flex;
-    gap: 15px;
-}
-
-/* Модальні вікна */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+// Глобальні змінні
+let ingredients = {};
+let currentRecipe = [];
+
+// ==================== ОСНОВНІ ФУНКЦІЇ ====================
+
+// Завантажити інгредієнти при запуску
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ DOM завантажено');
+    loadIngredients();
+});
+
+// Завантажити інгредієнти з сервера
+async function loadIngredients() {
+    try {
+        console.log('🔄 Завантажую інгредієнти...');
+        const response = await fetch('/api/ingredients');
+        
+        if (!response.ok) {
+            throw new Error('Помилка сервера: ' + response.status);
+        }
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            ingredients = data.ingredients;
+            console.log('✅ Інгредієнтів завантажено:', Object.keys(ingredients).length);
+            updateIngredientsList();
+            updateRecipeSelect();
+            showNotification('✅ Дані завантажено', 'success');
+        } else {
+            throw new Error(data.error || 'Невідома помилка');
+        }
+    } catch (error) {
+        console.error('❌ Помилка завантаження:', error);
+        showNotification('❌ Помилка: ' + error.message, 'error');
     }
 }
 
-.modal-header {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
-    padding: 20px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    line-height: 1;
-}
-
-.modal-body {
-    padding: 25px;
-}
-
-/* Адаптивність */
-@media (max-width: 1200px) {
-    .main-content {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+// Додати новий інгредієнт
+async function addIngredient() {
+    const nameInput = document.getElementById('ingredientName');
+    const priceInput = document.getElementById('ingredientPrice');
+    
+    const name = nameInput.value.trim();
+    const price = parseFloat(priceInput.value);
+    
+    console.log('🔄 Додаю інгредієнт:', { name, price });
+    
+    // Валідація
+    if (!name) {
+        showNotification('❌ Введіть назву інгредієнта', 'error');
+        nameInput.focus();
+        return;
     }
     
-    .header-info {
-        flex-direction: column;
-        width: 100%;
+    if (isNaN(price) || price <= 0) {
+        showNotification('❌ Введіть коректну ціну', 'error');
+        priceInput.focus();
+        return;
     }
     
-    .currency-info {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .btn-help {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .results-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .result-item.total-cost {
-        grid-column: span 1;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    try {
+        const response = await fetch('/api/ingredients', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: name, price: price })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Очистити поля
+            nameInput.value = '';
+            priceInput.value = '';
+            
+            // Оновити список
+            await loadIngredients();
+            
+            showNotification('✅ Інгредієнт додано: ' + name, 'success');
+        } else {
+            showNotification('❌ Помилка: ' + data.error, 'error');
+        }
+    } catch (error) {
+        console.error('❌ Помилка:', error);
+        showNotification('❌ Помилка з\'єднання', 'error');
     }
 }
+
+// Видалити інгредієнт
+async function deleteIngredient(name) {
+    if (!confirm('Видалити "' + name + '"?')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`/api/ingredients/${encodeURIComponent(name)}`, {
+            method: 'DELETE'
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            await loadIngredients();
+            showNotification('✅ Інгредієнт видалено', 'success');
+        } else {
+            showNotification('❌ Помилка: ' + data.error, 'error');
+        }
+    } catch (error) {
+        console.error('❌ Помилка:', error);
+        showNotification('❌ Помилка з\'єднання', 'error');
+    }
+}
+
+// Додати інгредієнт до рецепту
+function addToRecipe() {
+    const ingredientSelect = document.getElementById('recipeIngredient');
+    const gramsInput = document.getElementById('recipeGrams');
+    
+    const name = ingredientSelect.value;
+    const grams = parseFloat(gramsInput.value);
+    
+    console.log('🔄 Додаю до рецепту:', { name, grams });
+    
+    // Валідація
+    if (!name) {
+        showNotification('❌ Оберіть інгредієнт', 'error');
+        return;
+    }
+    
+    if (isNaN(grams) || grams <= 0) {
+        showNotification('❌ Введіть коректну кількість', 'error');
+        gramsInput.focus();
+        return;
+    }
+    
+    // Розрахунок вартості
+    const pricePerKg = ingredients[name];
+    const cost = (pricePerKg / 1000) * grams;
+    
+    // Додати до рецепту
+    currentRecipe.push({
+        name: name,
+        grams: grams,
+        cost: cost
+    });
+    
+    // Оновити таблицю
+    updateRecipeTable();
+    
+    // Очистити поле грамів
+    gramsInput.value = '';
+    
+    showNotification('✅ Додано до рецепту: ' + name, 'success');
+}
+
+// Видалити з рецепту
+function removeFromRecipe(index) {
+    currentRecipe.splice(index, 1);
+    updateRecipeTable();
+    showNotification('✅ Видалено з рецепту', 'success');
+}
+
+// Розрахувати вартість рецепту
+async function calculateRecipe() {
+    if (currentRecipe.length === 0) {
+        showNotification('❌ Рецепт порожній', 'error');
+        return;
+    }
+    
+    console.log('🧮 Розраховую рецепт...');
+    
+    try {
+        const response = await fetch('/api/calculate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                items: currentRecipe.map(item => ({
+                    name: item.name,
+                    grams: item.grams
+                }))
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            const result = data.result;
+            
+            // Оновити результати
+            document.getElementById('totalCost').textContent = result.total_cost.toFixed(2);
+            document.getElementById('totalWeight').textContent = result.total_weight.toFixed(0);
+            document.getElementById('costPer100g').textContent = result.cost_per_100g.toFixed(2);
+            
+            // Додати деталі
+            let details = '📋 Деталі:\n';
+            result.details.forEach(item => {
+                details += `• ${item.name}: ${item.grams}г = ${item.cost} грн\n`;
+            });
+            
+            showNotification('✅ Розраховано: ' + result.total_cost.toFixed(2) + ' грн', 'success');
+            console.log(details);
+        } else {
+            showNotification('❌ Помилка: ' + data.error, 'error');
+        }
+    } catch (error) {
+        console.error('❌ Помилка:', error);
+        showNotification('❌ Помилка розрахунку', 'error');
+    }
+}
+
+// Очистити рецепт
+function clearRecipe() {
+    if (currentRecipe.length === 0) return;
+    
+    if (confirm('Очистити весь рецепт?')) {
+        currentRecipe = [];
+        updateRecipeTable();
+        
+        // Скинути результати
+        document.getElementById('totalCost').textContent = '0.00';
+        document.getElementById('totalWeight').textContent = '0';
+        document.getElementById('costPer100g').textContent = '0.00';
+        
+        showNotification('✅ Рецепт очищено', 'success');
+    }
+}
+
+// ==================== ДОПОМІЖНІ ФУНКЦІЇ ====================
+
+// Оновити список інгредієнтів
+function updateIngredientsList() {
+    const tbody = document.getElementById('ingredientsList');
+    tbody.innerHTML = '';
+    
+    for (const [name, price] of Object.entries(ingredients)) {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${price.toFixed(2)} грн</td>
+            <td>
+                <button onclick="deleteIngredient('${name}')" 
+                        style="padding: 5px 10px; background: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">
+                    Видалити
+                </button>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    }
+}
+
+// Оновити випадаючий список для рецепту
+function updateRecipeSelect() {
+    const select = document.getElementById('recipeIngredient');
+    select.innerHTML = '<option value="">Оберіть інгредієнт...</option>';
+    
+    for (const [name, price] of Object.entries(ingredients)) {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = `${name} (${price.toFixed(2)} грн/кг)`;
+        select.appendChild(option);
+    }
+}
+
+// Оновити таблицю рецепту
+function updateRecipeTable() {
+    const tbody = document.getElementById('recipeList');
+    tbody.innerHTML = '';
+    
+    currentRecipe.forEach((item, index) => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.grams} г</td>
+            <td>${item.cost.toFixed(2)} грн</td>
+            <td>
+                <button onclick="removeFromRecipe(${index})" 
+                        style="padding: 5px 10px; background: #ff9800; color: white; border: none; border-radius: 3px; cursor: pointer;">
+                    Видалити
+                </button>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+}
+
+// Показати сповіщення
+function showNotification(message, type) {
+    // Видалити старі сповіщення
+    const oldNotifications = document.querySelectorAll('.notification');
+    oldNotifications.forEach(n => n.remove());
+    
+    // Створити нове сповіщення
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Автоматично прибрати через 3 секунди
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Додати CSS анімації для сповіщень
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Зробити функції доступними глобально
+window.addIngredient = addIngredient;
+window.addToRecipe = addToRecipe;
+window.calculateRecipe = calculateRecipe;
+window.clearRecipe = clearRecipe;
+window.deleteIngredient = deleteIngredient;
+window.removeFromRecipe = removeFromRecipe;
+
+console.log('✅ script.js завантажено та готовий до роботи!');
