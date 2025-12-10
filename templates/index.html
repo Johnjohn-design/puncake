@@ -3,303 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍰 Калькулятор собівартості випічки</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>🍰 Калькулятор собівартості</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button.secondary {
+            background: #2196F3;
+        }
+        button.danger {
+            background: #f44336;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #f2f2f2;
+        }
+        .result {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+        }
+        .success {
+            background: #4CAF50;
+        }
+        .error {
+            background: #f44336;
+        }
+    </style>
 </head>
 <body>
+    <h1>🍪 Калькулятор собівартості випічки</h1>
+    
     <div class="container">
-        <!-- Заголовок -->
-        <header class="header">
-            <div class="logo">
-                <i class="fas fa-cookie-bite"></i>
-                <h1>Калькулятор собівартості випічки</h1>
+        <!-- Ліва панель -->
+        <div class="panel">
+            <h2>📦 Інгредієнти</h2>
+            <div class="form-group">
+                <label>Назва:</label>
+                <input type="text" id="ingredientName" placeholder="Борошно, цукор...">
             </div>
-            <div class="header-info">
-                <div class="currency-info">
-                    <i class="fas fa-hryvnia"></i>
-                    <span>Валюта: Гривня (грн)</span>
-                </div>
-                <button class="btn-help" onclick="showHelp()">
-                    <i class="fas fa-question-circle"></i> Допомога
-                </button>
+            <div class="form-group">
+                <label>Ціна за кг (грн):</label>
+                <input type="number" id="ingredientPrice" step="0.01" placeholder="30.00">
             </div>
-        </header>
-
-        <!-- Основний контент -->
-        <main class="main-content">
-            <!-- Ліва колонка - інгредієнти -->
-            <div class="column">
-                <section class="card">
-                    <div class="card-header">
-                        <i class="fas fa-plus-circle"></i>
-                        <h2>Додати інгредієнт</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="ingredientName">
-                                <i class="fas fa-tag"></i> Назва інгредієнта
-                            </label>
-                            <input type="text" id="ingredientName" placeholder="Наприклад: Борошно пшеничне">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="ingredientCategory">
-                                <i class="fas fa-folder"></i> Категорія
-                            </label>
-                            <select id="ingredientCategory">
-                                <option value="борошно">Борошно</option>
-                                <option value="цукор">Цукор</option>
-                                <option value="жири">Жири</option>
-                                <option value="яйця">Яйця</option>
-                                <option value="молочні">Молочні продукти</option>
-                                <option value="фрукти">Фрукти/Ягоди</option>
-                                <option value="горіхи">Горіхи</option>
-                                <option value="спеції">Спеції</option>
-                                <option value="інше">Інше</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="ingredientPrice">
-                                <i class="fas fa-money-bill-wave"></i> Ціна за кілограм (грн)
-                            </label>
-                            <input type="number" id="ingredientPrice" step="0.01" min="0" placeholder="0.00">
-                        </div>
-                        
-                        <button class="btn-primary" onclick="addIngredient()">
-                            <i class="fas fa-save"></i> Зберегти інгредієнт
-                        </button>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <div class="card-header">
-                        <i class="fas fa-list"></i>
-                        <h2>Мої інгредієнти</h2>
-                        <div class="card-actions">
-                            <button class="btn-icon" onclick="refreshIngredients()" title="Оновити">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <button class="btn-icon" onclick="exportToCSV()" title="Експорт у CSV">
-                                <i class="fas fa-file-export"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="filter-controls">
-                            <input type="text" id="searchIngredient" placeholder="Пошук інгредієнта..." 
-                                   onkeyup="filterIngredients()">
-                            <select id="filterCategory" onchange="filterIngredients()">
-                                <option value="">Всі категорії</option>
-                            </select>
-                        </div>
-                        
-                        <div class="table-container">
-                            <table id="ingredientsTable">
-                                <thead>
-                                    <tr>
-                                        <th>Назва</th>
-                                        <th>Категорія</th>
-                                        <th>Ціна за кг</th>
-                                        <th>Дії</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="ingredientsList">
-                                    <!-- Тут будуть інгредієнти -->
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="stats">
-                            <div class="stat-item">
-                                <i class="fas fa-cube"></i>
-                                <span id="totalIngredients">0</span> інгредієнтів
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-coins"></i>
-                                Середня ціна: <span id="avgPrice">0.00</span> грн/кг
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <button onclick="addIngredient()">💾 Зберегти</button>
+            
+            <h3>Мої інгредієнти:</h3>
+            <table id="ingredientsTable">
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Ціна/кг</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="ingredientsList">
+                    <!-- Тут будуть інгредієнти -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Права панель -->
+        <div class="panel">
+            <h2>🧮 Розрахунок</h2>
+            <div class="form-group">
+                <label>Інгредієнт:</label>
+                <select id="recipeIngredient">
+                    <option value="">Оберіть...</option>
+                </select>
             </div>
-
-            <!-- Права колонка - розрахунок -->
-            <div class="column">
-                <section class="card">
-                    <div class="card-header">
-                        <i class="fas fa-calculator"></i>
-                        <h2>Розрахунок рецепту</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="recipeIngredient">
-                                    <i class="fas fa-utensils"></i> Інгредієнт
-                                </label>
-                                <select id="recipeIngredient" onchange="updateIngredientInfo()">
-                                    <option value="">Оберіть інгредієнт...</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="recipeGrams">
-                                    <i class="fas fa-weight"></i> Кількість (грами)
-                                </label>
-                                <input type="number" id="recipeGrams" step="1" min="0" placeholder="0">
-                            </div>
-                            
-                            <button class="btn-success" onclick="addToRecipe()">
-                                <i class="fas fa-plus"></i> Додати
-                            </button>
-                        </div>
-                        
-                        <div class="ingredient-info" id="ingredientInfo">
-                            <div class="info-item">
-                                <span>Ціна за грам:</span>
-                                <strong id="pricePerGram">0.0000</strong> грн
-                            </div>
-                            <div class="info-item">
-                                <span>Вартість 100г:</span>
-                                <strong id="pricePer100g">0.00</strong> грн
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <div class="card-header">
-                        <i class="fas fa-clipboard-list"></i>
-                        <h2>Рецепт</h2>
-                        <div class="card-actions">
-                            <button class="btn-icon" onclick="clearRecipe()" title="Очистити">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <button class="btn-icon" onclick="saveRecipe()" title="Зберегти рецепт">
-                                <i class="fas fa-bookmark"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table id="recipeTable">
-                                <thead>
-                                    <tr>
-                                        <th>Інгредієнт</th>
-                                        <th>Кількість</th>
-                                        <th>Вартість</th>
-                                        <th>Дії</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="recipeList">
-                                    <!-- Тут буде рецепт -->
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="recipe-actions">
-                            <button class="btn-warning" onclick="calculateRecipe()">
-                                <i class="fas fa-calculator"></i> Розрахувати вартість
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card results-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar"></i>
-                        <h2>Результати розрахунку</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="results-grid">
-                            <div class="result-item total-cost">
-                                <div class="result-label">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                    Загальна вартість
-                                </div>
-                                <div class="result-value" id="totalCost">0.00 грн</div>
-                            </div>
-                            
-                            <div class="result-item">
-                                <div class="result-label">
-                                    <i class="fas fa-weight"></i>
-                                    Загальна вага
-                                </div>
-                                <div class="result-value" id="totalWeight">0 г</div>
-                            </div>
-                            
-                            <div class="result-item">
-                                <div class="result-label">
-                                    <i class="fas fa-percentage"></i>
-                                    Вартість 100г
-                                </div>
-                                <div class="result-value" id="costPer100g">0.00 грн</div>
-                            </div>
-                            
-                            <div class="result-item">
-                                <div class="result-label">
-                                    <i class="fas fa-balance-scale"></i>
-                                    Вартість 1кг
-                                </div>
-                                <div class="result-value" id="costPerKg">0.00 грн</div>
-                            </div>
-                        </div>
-                        
-                        <div class="recipe-summary">
-                            <h3><i class="fas fa-info-circle"></i> Детальний розрахунок:</h3>
-                            <div id="detailedResults"></div>
-                        </div>
-                    </div>
-                </section>
+            <div class="form-group">
+                <label>Кількість (г):</label>
+                <input type="number" id="recipeGrams" placeholder="500">
             </div>
-        </main>
-
-        <!-- Нижній колонтитул -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p><i class="fas fa-copyright"></i> 2024 Калькулятор собівартості випічки</p>
-                </div>
-                <div class="footer-right">
-                    <button class="btn-secondary" onclick="showBackup()">
-                        <i class="fas fa-database"></i> Резервна копія
-                    </button>
-                    <button class="btn-secondary" onclick="showStats()">
-                        <i class="fas fa-chart-pie"></i> Статистика
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Модальні вікна -->
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-question-circle"></i> Допомога</h2>
-                <button class="modal-close" onclick="closeModal('helpModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h3>Як користуватися калькулятором:</h3>
-                <ol>
-                    <li><strong>Додайте інгредієнти</strong> - вкажіть назву та ціну за кілограм</li>
-                    <li><strong>Створіть рецепт</strong> - обирайте інгредієнти та вказуйте грами</li>
-                    <li><strong>Розрахуйте вартість</strong> - натисніть "Розрахувати вартість"</li>
-                    <li><strong>Зберігайте рецепти</strong> - для подальшого використання</li>
-                </ol>
-                
-                <h3>Поради:</h3>
-                <ul>
-                    <li>Використовуйте категорії для кращої організації</li>
-                    <li>Експортуйте дані у CSV для звітів</li>
-                    <li>Робіть резервні копії даних</li>
-                </ul>
+            <button onclick="addToRecipe()" class="secondary">➕ Додати до рецепту</button>
+            
+            <h3>Рецепт:</h3>
+            <table id="recipeTable">
+                <thead>
+                    <tr>
+                        <th>Інгредієнт</th>
+                        <th>Кількість</th>
+                        <th>Вартість</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="recipeList">
+                    <!-- Тут буде рецепт -->
+                </tbody>
+            </table>
+            
+            <button onclick="calculateRecipe()">🧮 Розрахувати</button>
+            <button onclick="clearRecipe()" class="danger">🧹 Очистити</button>
+            
+            <div class="result">
+                <h3>📊 Результат:</h3>
+                <p><strong>Загальна вартість:</strong> <span id="totalCost">0.00</span> грн</p>
+                <p><strong>Загальна вага:</strong> <span id="totalWeight">0</span> г</p>
+                <p><strong>Вартість 100г:</strong> <span id="costPer100g">0.00</span> грн</p>
             </div>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+    <script src="/static/script.js"></script>
+    
+    <!-- Тестові кнопки -->
+    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px;">
+        <h3>🔧 Тест:</h3>
+        <button onclick="alert('✅ Тест 1: Кнопка працює!')" style="background: #6c757d;">
+            ТЕСТ 1: Alert
+        </button>
+        <button onclick="console.log('✅ Тест 2: Консоль працює')" style="background: #6c757d;">
+            ТЕСТ 2: Консоль
+        </button>
+        <button onclick="testAPI()" style="background: #6c757d;">
+            ТЕСТ 3: API
+        </button>
+    </div>
+    
+    <script>
+        // Тестова функція для API
+        async function testAPI() {
+            try {
+                const response = await fetch('/api/ingredients');
+                const data = await response.json();
+                alert(`API тест: ${data.count} інгредієнтів завантажено`);
+            } catch (error) {
+                alert('Помилка API: ' + error.message);
+            }
+        }
+    </script>
 </body>
 </html>
