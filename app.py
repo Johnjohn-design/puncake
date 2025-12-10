@@ -1,12 +1,11 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS  # Правильний імпорт
 import json
 import os
-import csv
 from datetime import datetime
-from io import StringIO
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  
 app.config['SECRET_KEY'] = 'your-secret-key-here'
 
 DATA_FILE = 'data.json'
