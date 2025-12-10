@@ -6,6 +6,7 @@ from datetime import datetime
 from io import StringIO
 
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = 'your-secret-key-here'
 
 DATA_FILE = 'data.json'
