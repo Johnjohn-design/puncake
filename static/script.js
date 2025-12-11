@@ -44,13 +44,26 @@ async function loadIngredients() {
     }
 }
 
-// Додати новий інгредієнт
-async function addIngredient() {
+// Додати новий інгредієнт (основна функція)
+async function addIngredient(event) {
+    // Запобігти перезавантаженню сторінки, якщо кнопка у формі
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
     const nameInput = document.getElementById('ingredientName');
     const priceInput = document.getElementById('ingredientPrice');
     
+    // Перевірка чи елементи існують
+    if (!nameInput || !priceInput) {
+        console.error('❌ Не знайдено полів вводу!');
+        showNotification('❌ Помилка: поля вводу не знайдені', 'error');
+        return;
+    }
+    
     const name = nameInput.value.trim();
-    const price = parseFloat(priceInput.value);
+    const price = parseFloat(priceInput.value.replace(',', '.'));
     
     console.log('🔄 Додаю інгредієнт:', { name, price });
     
@@ -68,33 +81,61 @@ async function addIngredient() {
     }
     
     try {
+        console.log('📤 Відправляю запит на сервер...');
         const response = await fetch('/api/ingredients', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: name, price: price })
+            body: JSON.stringify({ name, price })
         });
         
+        console.log('📥 Отримано відповідь:', response.status);
         const data = await response.json();
+        console.log('📊 Дані від сервера:', data);
         
         if (data.success) {
             // Очистити поля
             nameInput.value = '';
             priceInput.value = '';
             
-            // Оновити список
-            await loadIngredients();
+            // Оновити локальні дані
+            ingredients[name] = price;
+            saveIngredientsToLocalStorage();
             
-            showNotification('✅ Інгредієнт додано: ' + name, 'success');
+            // Оновити інтерфейс
+            updateIngredientsList();
+            updateRecipeSelect();
+            updateStats();
+            
+            showNotification(`✅ Інгредієнт додано: ${name} (${price} грн/кг)`, 'success');
+            
+            // Перефокусувати на перше поле
+            nameInput.focus();
         } else {
-            showNotification('❌ Помилка: ' + data.error, 'error');
+            showNotification(`❌ Помилка сервера: ${data.error || 'невідома помилка'}`, 'error');
         }
     } catch (error) {
-        console.error('❌ Помилка:', error);
-        showNotification('❌ Помилка з\'єднання', 'error');
+        console.error('❌ Помилка запиту:', error);
+        showNotification('❌ Помилка з\'єднання з сервером', 'error');
     }
 }
+
+// Після завантаження DOM додати обробники подій
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ DOM завантажено');
+    loadIngredients();
+    updateCounterDisplay();
+    
+    // Додати обробник кнопки
+    const addButton = document.getElementById('addIngredientBtn');
+    if (addButton) {
+        addButton.addEventListener('click', addIngredient);
+        console.log('✅ Обробник кнопки додано');
+    } else {
+        console.warn('⚠️ Кнопка addIngredientBtn не знайдена!');
+    }
+});
 
 // Видалити інгредієнт
 async function deleteIngredient(name) {
