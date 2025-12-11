@@ -520,10 +520,6 @@ async function loadIngredients() {
         // Продовжуємо з локальними даними
     }
 }
-
-// Онови функцію addIngredient
-async function addIngredient() {
-    // ... твій код додавання ...
     
     if (data.success) {
         // Оновити локальне сховище
