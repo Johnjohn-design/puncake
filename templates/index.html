@@ -1187,9 +1187,22 @@
                             Середня ціна: <span id="avgPrice">0.00</span> грн/кг
                         </div>
                     </div>
-                </div>
-            </div>
-            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;">
+    <button class="btn btn-secondary" onclick="exportData()" style="font-size: 14px;">
+        <i class="fas fa-file-export"></i> Експорт JSON
+    </button>
+    <button class="btn btn-secondary" onclick="exportToCSV()" style="font-size: 14px;">
+        <i class="fas fa-file-csv"></i> Експорт CSV
+    </button>
+    <button class="btn btn-secondary" onclick="importData()" style="font-size: 14px; grid-column: span 2;">
+        <i class="fas fa-file-import"></i> Імпорт з файлу
+    </button>
+</div>
+
+<div style="margin-top: 15px; font-size: 12px; color: #7f8c8d; text-align: center;">
+    <i class="fas fa-info-circle"></i> 
+    Експортуйте дані для резервного копіювання або перенесення на інший пристрій
+</div>
             <!-- Права колонка -->
             <div>
                 <!-- Картка розрахунку рецепту -->
