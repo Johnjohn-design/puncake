@@ -105,16 +105,20 @@ def calculate():
         
         # Розрахунок додаткових показників
         cost_per_100g = (total_cost / total_weight * 100) if total_weight > 0 else 0
+
+        cost_per_kg = total_cost / total_weight * 1000 if total_weight > 0 else 0
         
         return jsonify({
-            'success': True,
-            'result': {
-                'total_cost': round(total_cost, 2),
-                'total_weight': round(total_weight, 2),
-                'cost_per_100g': round(cost_per_100g, 2),
-                'details': details
-            }
-        })
+    'success': True,
+    'result': {
+        'total_cost': round(total_cost, 2),
+        'total_weight': round(total_weight, 2),
+        'cost_per_100g': round(cost_per_100g, 2),
+        'cost_per_kg': round(cost_per_kg, 2),  # Додаємо цей рядок
+        'items_count': len(details),
+        'details': details
+    }
+})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
